@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %} Hot Questions {% endblock %}
+
+{% block content %}
+    <div class="row mb-4 ml-1">
+        <span class="col-md-auto"><a href="{% url 'index' %}"><u>New Questions</u></a></span>
+        <span class="col-md-auto">Hot Questions</span>
+    </div>
+
+    {% for question in page %}
+        {% include "question_card.html" %}
+    {% endfor %}
+
+    {% include 'paginator.html' %}
+
+{% endblock %}

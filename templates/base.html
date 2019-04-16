@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <title> {% block title %} Base {% endblock %}</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark p-3 pb-4">
+    <a class="navbar-brand col-md-1" href="/">
+        <h2>Asqu</h2>
+    </a>
+    <form class="form-inline col-md-7">
+        <div class="input-group w-75">
+            <input class="form-control mr-2 w-75" type="search" placeholder="Search" aria-label="navbar search">
+            <a class="btn btn-outline-success active md-12" type="submit" href="{% url 'ask' %}">Ask!</a>
+        </div>
+    </form>
+    <div class="container col-md-3 justify-content-center mx-5">
+        <div class="col-md-auto px-0">
+            <a href="#">
+                <img src="{% static 'img/profile_icon.png' %}" width="80" height="80" class="rounded" alt="">
+            </a>
+        </div>
+        <div class="navbar-text col-md-auto p-0">
+            <p class='pl-3' id="user_name"> Profile</p>
+            <span class="col-md-4"><a href=#><u>settings</u></a></span>
+            <span class="col-md-4"><a href=#><u>log out</u></a></span>
+        </div>
+    </div>
+</nav>
+
+<div class="container col-md-12 pt-4 px-4 pb-3">
+    <div class="row">
+        <div class="col container col-md-9 px-4">
+            {% block content %}{% endblock %}
+        </div>
+
+        <div class="col col-md-3 pr-4">
+            <h4 class="new_quest mb-1 mt-4 ml-2">
+                <span>Popular Tags</span>
+            </h4>
+
+            {% for tag in popular_tags %}
+                <span class="col-md-3">
+                    <a href="{% url 'tag' tag.tag_name%}"><u>{{ tag.tag_name }}</u></a>
+                </span>
+            {% endfor %}
+
+            <h4 class="new_quest mb-1 mt-4 ml-2">
+                <span>Best Members</span>
+            </h4>
+            <ul class="list-unstyled best_members_list"></ul>
+            {% for member in popular_members %}
+                <div class="mb-1 ml-3 ">{{ member.member_name }}</div>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

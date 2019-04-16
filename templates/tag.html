@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %} Tag {% endblock %}
+
+{% block content %} 
+    <div class="row mb-4">
+            <h2 class="pl-3">Tag:  {{tag_name}}</h2>
+    </div>
+    {% for question in page %}
+        {% include "question_card.html" %}
+    {% endfor %}
+{% endblock %}             

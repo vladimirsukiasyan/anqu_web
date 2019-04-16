@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %} Question {% endblock %}
+
+{% block content %}
+    <div class="row ml-3">
+        <div class="col-md-auto">
+            <div class="row">
+                <img src="{% static 'img/profile_icon.png' %}" width="120" height="120" class="rounded" alt="avatar">
+            </div>
+            <div class="row mt-3">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-secondary btn-sm">↑</button>
+                    <button type="button" class="btn btn-secondary btn-sm">↓</button>
+                    <span class="border border-secondary rounded-right align-bottom p-1">  {{ question.rating }}  </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 ml-3">
+            <h3>{{ question.title }}</h3>
+            <p>{{ question.content }}</p>
+            <span>answer({{ question.answers }})</span
+            </a><span class="ml-5">Tag:</span>
+            <a href="{% url 'tag' question.tag %}"><u>{{ question.tag }}</u></a></p>
+        </div>
+    </div>
+
+    <hr>
+
+    {% for answer in page %}
+        {% include 'answer_card.html' %}
+    {% endfor %}
+
+    {% include 'paginator.html' %}
+
+    <hr>
+
+    <div class="form-group mt-4 px-4">
+        <div>
+            <textarea class="form-control" id="exampleFormControlTextarea1"
+                      rows="7" placeholder="Enter your answer here"></textarea>
+        </div>
+
+        <div class="mt-4">
+            <button type="button" class="col-md-2  btn btn-primary">Answer</button>
+        </div>
+    </div>
+{% endblock %}

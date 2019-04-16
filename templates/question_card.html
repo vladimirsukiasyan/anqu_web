@@ -1,0 +1,25 @@
+{% load staticfiles %}
+
+<div class="container col-md-12 px-5 pt-1 mb-5">
+    <div class="row">
+        <div class="col-md-1">
+            <div class="row">
+                <img src="{% static 'img/profile_icon.png' %}" width="80" height="80" class="rounded" alt="avatar">
+            </div>
+            <div class="row mt-3">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-secondary btn-sm">↑</button>
+                    <button type="button" class="btn btn-secondary btn-sm">↓</button>
+                    <span class="border border-secondary rounded-right align-bottom p-1">  {{ question.rating }}  </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 ml-3">
+            <h4>{{ question.title }}</h4>
+            <p>{{ question.content }}</p>
+            <a href="{% url 'question' question.id %}">answer({{ question.answers }})</a>
+            <span class="ml-5">Tag:</span>
+            <a href="{% url 'tag' question.tag %}"><u>{{ question.tag }}</u></a>
+        </div>
+    </div>
+</div>
